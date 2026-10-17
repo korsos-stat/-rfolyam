@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Árfolyam</string>
+    <string name="title">Valutaárfolyamok</string>
+    <string name="source_short">CC · Ft</string>
+    <string name="source_long">Correct Change pénzváltó, Budapest · forintban · forrás megnyitása ›</string>
+    <string name="buy">Vétel</string>
+    <string name="sell">Eladás</string>
+    <string name="refresh">Frissítés</string>
+    <string name="pin_widget">Widget kitétele a kezdőképernyőre</string>
+    <string name="no_data">Még nincs adat</string>
+    <string name="widget_desc">EUR, USD, CHF és RSD vételi és eladási árfolyam</string>
+    <string name="help">Vétel: ennyit fizet a pénzváltó 1 egységért, ha te adod el neki. Eladás: ennyiért veheted meg tőle.\n\nA widget kb. félóránként magától frissül, a ⟳ ikonnal azonnal is frissítheted. Widget kézi hozzáadása: tartsd nyomva a kezdőképernyő üres részét → Widgetek → Árfolyam.\n\nAz árak tájékoztató jellegűek, a pénzváltó honlapján közzétett értékek.</string>
+</resources>
