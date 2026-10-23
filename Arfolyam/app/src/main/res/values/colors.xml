@@ -12,5 +12,7 @@
     <color name="app_accent">#FFB8860B</color>
     <color name="app_link">#FF2F6FB5</color>
     <color name="app_divider">#1F000000</color>
+    <color name="w_mid">#FF8FC1FF</color>
+    <color name="app_mid">#FF2F6FB5</color>
     <color name="icon_bg">#FF1C1F24</color>
 </resources>
