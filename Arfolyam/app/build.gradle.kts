@@ -11,8 +11,8 @@ android {
         applicationId = "hu.korsos.arfolyam"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "1.1"
     }
 
     // Fix aláíró kulcs, hogy az újabb verziók rátelepíthetők legyenek a régire.
