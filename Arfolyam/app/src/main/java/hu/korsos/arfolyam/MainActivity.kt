@@ -61,9 +61,19 @@ class MainActivity : Activity() {
         setText(R.id.m_rsd_buy, r["RSD"]?.buy)
         setText(R.id.m_rsd_sell, r["RSD"]?.sell)
 
+        val mid = MnbStore.load(this)
+        for ((id, code) in listOf(
+            R.id.m_eur_mid to "EUR", R.id.m_usd_mid to "USD",
+            R.id.m_chf_mid to "CHF", R.id.m_rsd_mid to "RSD"
+        )) {
+            findViewById<TextView>(id).text = Fmt.mid(mid[code])
+        }
+
         val err = RateStore.lastError(this)
         val updated = Fmt.updated(RateStore.updatedAt(this))
-        status.text = if (err != null) "Nem sikerült frissíteni ($err).\n$updated" else updated
+        val mnbDate = MnbStore.dateLabel(this)
+        val mnbLine = if (mnbDate.isNotEmpty()) "\nMNB középárfolyam: $mnbDate" else ""
+        status.text = (if (err != null) "Nem sikerült frissíteni ($err).\n$updated" else updated) + mnbLine
     }
 
     private fun setText(id: Int, v: Double?) {

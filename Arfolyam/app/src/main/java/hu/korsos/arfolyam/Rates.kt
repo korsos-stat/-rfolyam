@@ -146,6 +146,9 @@ object Fmt {
         return if (v < 10) String.format(hu, "%.2f", v) else String.format(hu, "%.1f", v)
     }
 
+    /** MNB középárfolyam: mindig két tizedes, ahogy az MNB közli. */
+    fun mid(v: Double?): String = if (v == null) "–" else String.format(hu, "%.2f", v)
+
     fun updated(ts: Long): String {
         if (ts == 0L) return "Még nincs adat"
         val now = Calendar.getInstance()
@@ -166,6 +169,12 @@ object Updater {
         } catch (e: Exception) {
             RateStore.saveError(ctx, e.message ?: "Hiba")
             false
+        }
+        // Az MNB-árfolyam külön forrás: ha nem érhető el, a pénzváltós árak attól még frissülnek.
+        try {
+            MnbStore.save(ctx, MnbFetcher.fetch())
+        } catch (e: Exception) {
+            // marad az utolsó elmentett MNB-érték
         }
         RateWidget.renderAll(ctx, loading = false)
         return ok

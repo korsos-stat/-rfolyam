@@ -52,13 +52,23 @@ class RateWidget : AppWidgetProvider() {
             v.setTextViewText(R.id.rsd_buy, Fmt.value(rates["RSD"]?.buy))
             v.setTextViewText(R.id.rsd_sell, Fmt.value(rates["RSD"]?.sell))
 
+            val mid = MnbStore.load(ctx)
+            v.setTextViewText(R.id.eur_mid, Fmt.mid(mid["EUR"]))
+            v.setTextViewText(R.id.usd_mid, Fmt.mid(mid["USD"]))
+            v.setTextViewText(R.id.chf_mid, Fmt.mid(mid["CHF"]))
+            v.setTextViewText(R.id.rsd_mid, Fmt.mid(mid["RSD"]))
+
             val status = when {
                 loading -> "Frissítés…"
                 RateStore.lastError(ctx) != null ->
                     "Nem sikerült frissíteni · " + Fmt.updated(RateStore.updatedAt(ctx)).lowercase()
                 else -> Fmt.updated(RateStore.updatedAt(ctx))
             }
-            v.setTextViewText(R.id.updated, status)
+            val mnbDate = MnbStore.dateLabel(ctx)
+            v.setTextViewText(
+                R.id.updated,
+                if (mnbDate.isNotEmpty() && !loading) "$status · MNB $mnbDate" else status
+            )
 
             val refreshIntent = Intent(ctx, RateWidget::class.java).setAction(ACTION_REFRESH)
             v.setOnClickPendingIntent(
